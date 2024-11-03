@@ -21,7 +21,7 @@ export function applyTheme(theme, albumArtImage, artistArtImage) {
                 applyGlassTheme(albumArtImage);
             }
                 else if (theme === 'glassArtist') {
-                    applyGlassTheme(albumArtImage);
+                    applyGlassArtistTheme(albumArtImage);
                 }
         } else {
             // If the image is not loaded yet, wait for it to load
@@ -60,8 +60,8 @@ function applyGlassTheme(imageElement) {
     document.body.classList.add('glass-theme');
 }
 
-function applyGlassTheme(artistImageElement) {
-    const artistImageUrl = imageElement.src;
+function applyGlassArtistTheme(artistImageElement) {
+    const artistImageUrl = artistImageElement.src;
     document.body.style.backgroundImage = `url('${artistImageUrl}')`;
     document.body.classList.add('glass-theme');
 }
