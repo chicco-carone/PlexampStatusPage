@@ -24,6 +24,7 @@ const trackTitleElement = document.getElementById('track-title');
 const trackArtistElement = document.getElementById('track-artist');
 const trackAlbumElement = document.getElementById('track-album');
 const albumArtElement = document.getElementById('album-art');
+const artistArtElement = document.getElementById('artist-art');
 
 const settingsButton = document.getElementById('settings-button');
 const settingsModal = document.getElementById('settings-modal');
@@ -106,8 +107,8 @@ export function updateNowPlayingUI(mediaInfo) {
 
     albumArtElement.crossOrigin = 'Anonymous'; // Important for CORS -> Fuck CORS, im not a web dev
     albumArtElement.src = imageUrl;
-    artistArtElement.crossOrigin = 'Anonymous'; // Important for CORS -> Fuck CORS, im not a web dev
-    artistArtElement.src = artistImageUrl;
+  //  artistArtElement.crossOrigin = 'Anonymous'; // Important for CORS -> Fuck CORS, im not a web dev
+   // artistArtElement.src = artistImageUrl;
 
     // Update total time
     totalTimeElement.innerText = formatTime(duration);
@@ -129,8 +130,8 @@ export function updateNowPlayingUI(mediaInfo) {
     // Apply theme when album art loads
     albumArtElement.onload = () => {
         const theme = getCurrentTheme();
-        if (theme === 'pastel' || theme === 'glass' || theme === 'gradient') {
-            applyTheme(theme, albumArtElement);
+        if (theme === 'pastel' || theme === 'glass' || theme === 'gradient' || theme === 'glassArtist') {
+            applyTheme(theme, albumArtElement, artistArtElement);
         } else {
             clearDynamicBackground();
             applyTheme(theme);

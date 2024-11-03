@@ -59,7 +59,7 @@ export async function fetchNowPlaying() {
                 album,
                 albumYear,
                 coverUrl,
-                artistArt
+                artistArt,
                 plexIP,
                 plexToken,
                 viewOffset,
