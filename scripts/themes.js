@@ -7,7 +7,7 @@ export function applyTheme(theme, albumArtImage, artistArtImage) {
     document.body.className = ''; // Reset any existing classes
     document.body.classList.add(theme);
 
-    if ((theme === 'pastel' || theme === 'glass' || theme === 'gradient') && albumArtImage && artistArtImage) {
+    if ((theme === 'pastel' || theme === 'glass' || theme === 'gradient' || theme === 'glassArtist') && albumArtImage && artistArtImage) {
         if (albumArtImage.complete && albumArtImage.complete === true) {
             // If the image is already loaded, apply the dynamic theme
             if (theme === 'pastel') {
@@ -18,10 +18,11 @@ export function applyTheme(theme, albumArtImage, artistArtImage) {
                 applyPastelGradientTheme(albumArtImage);
             }
                 else if (theme === 'glass') {
-                applyGlassTheme(albumArtImage);
+                    applyGlassTheme(albumArtImage);
             }
                 else if (theme === 'glassArtist') {
                     applyGlassArtistTheme(albumArtImage);
+                applyGlassArtistTheme(artistArtImage);
                 }
         } else {
             // If the image is not loaded yet, wait for it to load
@@ -35,6 +36,9 @@ export function applyTheme(theme, albumArtImage, artistArtImage) {
                 }
 
                 else if (theme === 'glass') {
+                    applyGlassTheme(albumArtImage);
+                }
+                else if (theme === 'glassArtist') {
                     applyGlassTheme(albumArtImage);
                     applyGlassTheme(artistArtImage);
                 }
@@ -63,7 +67,7 @@ function applyGlassTheme(imageElement) {
 function applyGlassArtistTheme(artistImageElement) {
     const artistImageUrl = artistImageElement.src;
     document.body.style.backgroundImage = `url('${artistImageUrl}')`;
-    document.body.classList.add('glass-theme');
+    document.body.classList.add('glassArtist-theme');
 }
 
 
@@ -71,7 +75,7 @@ export function clearDynamicBackground() {
     // Remove dynamic background styles
     document.body.style.backgroundImage = '';
     document.body.style.backgroundColor = '';
-    document.body.classList.remove('glass-theme', 'pastel-theme');
+    document.body.classList.remove('glass-theme', 'glassArtist-theme', 'pastel-theme');
     document.documentElement.style.removeProperty('--pastel-color');
 }
 
