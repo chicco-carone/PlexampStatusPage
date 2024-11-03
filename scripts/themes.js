@@ -1,14 +1,14 @@
 // scripts/themes.js
 
-export function applyTheme(theme, albumArtImage) {
+export function applyTheme(theme, albumArtImage, artistArtImage) {
     // First, remove any dynamic background classes or styles
     clearDynamicBackground();
 
     document.body.className = ''; // Reset any existing classes
     document.body.classList.add(theme);
 
-    if ((theme === 'pastel' || theme === 'glass' || theme === 'gradient') && albumArtImage) {
-        if (albumArtImage.complete) {
+    if ((theme === 'pastel' || theme === 'glass' || theme === 'gradient') && albumArtImage && artistArtImage) {
+        if (albumArtImage.complete && albumArtImage.complete === true) {
             // If the image is already loaded, apply the dynamic theme
             if (theme === 'pastel') {
                 applyPastelTheme(albumArtImage);
@@ -20,6 +20,9 @@ export function applyTheme(theme, albumArtImage) {
                 else if (theme === 'glass') {
                 applyGlassTheme(albumArtImage);
             }
+                else if (theme === 'glassArtist') {
+                    applyGlassTheme(albumArtImage);
+                }
         } else {
             // If the image is not loaded yet, wait for it to load
             albumArtImage.onload = () => {
@@ -33,6 +36,7 @@ export function applyTheme(theme, albumArtImage) {
 
                 else if (theme === 'glass') {
                     applyGlassTheme(albumArtImage);
+                    applyGlassTheme(artistArtImage);
                 }
             };
         }
@@ -55,6 +59,13 @@ function applyGlassTheme(imageElement) {
     document.body.style.backgroundImage = `url('${imageUrl}')`;
     document.body.classList.add('glass-theme');
 }
+
+function applyGlassTheme(artistImageElement) {
+    const artistImageUrl = imageElement.src;
+    document.body.style.backgroundImage = `url('${artistImageUrl}')`;
+    document.body.classList.add('glass-theme');
+}
+
 
 export function clearDynamicBackground() {
     // Remove dynamic background styles

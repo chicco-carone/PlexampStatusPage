@@ -48,6 +48,7 @@ export async function fetchNowPlaying() {
             const album = media.getAttribute('parentTitle');
             const albumYear = media.getAttribute('parentYear') || '';
             const coverUrl = media.getAttribute('thumb');
+            const artistArt = media.getAttribute('grandparentThumb');
             const viewOffset = parseInt(media.getAttribute('viewOffset')) || 0;
             const duration = parseInt(media.getAttribute('duration')) || 1;
 
@@ -58,6 +59,7 @@ export async function fetchNowPlaying() {
                 album,
                 albumYear,
                 coverUrl,
+                artistArt
                 plexIP,
                 plexToken,
                 viewOffset,

@@ -89,6 +89,7 @@ export function updateNowPlayingUI(mediaInfo) {
         album,
         albumYear,
         coverUrl,
+        artistArt,
         plexIP,
         plexToken,
         viewOffset,
@@ -97,6 +98,7 @@ export function updateNowPlayingUI(mediaInfo) {
     const useHttps = localStorage.getItem('EnforceHTTPS') === 'true';
     const protocol = useHttps ? 'https' : 'http';
     const imageUrl = `${protocol}://${plexIP}:32400${coverUrl}?X-Plex-Token=${plexToken}`;
+    const artistImageUrl = `${protocol}://${plexIP}:32400${artistArt}?X-Plex-Token=${plexToken}`;
 
     trackTitleElement.innerText = title;
     trackArtistElement.innerText = artist;
@@ -104,6 +106,8 @@ export function updateNowPlayingUI(mediaInfo) {
 
     albumArtElement.crossOrigin = 'Anonymous'; // Important for CORS -> Fuck CORS, im not a web dev
     albumArtElement.src = imageUrl;
+    artistArtElement.crossOrigin = 'Anonymous'; // Important for CORS -> Fuck CORS, im not a web dev
+    artistArtElement.src = artistImageUrl;
 
     // Update total time
     totalTimeElement.innerText = formatTime(duration);
