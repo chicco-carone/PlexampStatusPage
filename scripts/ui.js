@@ -108,7 +108,7 @@ export function updateNowPlayingUI(mediaInfo) {
     albumArtElement.crossOrigin = 'Anonymous'; // Important for CORS -> Fuck CORS, im not a web dev
     albumArtElement.src = imageUrl;
     //artistArtElement.crossOrigin = 'Anonymous'; // Important for CORS -> Fuck CORS, im not a web dev
-    //artistArtElement.src = artistImageUrl;
+    artistArtElement.src = artistImageUrl;
 
     // Update total time
     totalTimeElement.innerText = formatTime(duration);
