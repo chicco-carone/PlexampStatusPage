@@ -1,0 +1,13 @@
+services:
+  plexamp-status-page:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8080:80"
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - PLEX_IP=${PLEX_IP}
+      - PLEX_TOKEN=${PLEX_TOKEN}
